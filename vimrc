@@ -6,6 +6,9 @@ set laststatus=2					"Enable AirLine
 set backspace=indent,eol,start				"Make backspace behave like every other editor.
 set number 
 
+
+set timeoutlen=1000 ttimeoutlen=0			"Stop the delay between switching modes"	
+
 syntax enable 
 filetype plugin indent on
 
@@ -42,6 +45,7 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
 
 "-----------Split Management-------------"
 set splitbelow						"New horizontal splits always go below the current window
