@@ -37,6 +37,13 @@ nmap <Leader><space> :nohlsearch<cr>
 "Make NERDTree easier to toggle
 nmap <C-n> :NERDTreeToggle<cr>
 
+"Auto close brackets and quotes
+ino " ""<left>
+ino ' ''<left>
+ino ( ()<left>
+ino [ []<left>
+ino { {}<left>
+ino {<CR> {<CR>}<ESC>0
 
 
 "-----------Auto-Commands-------------"
