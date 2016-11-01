@@ -6,11 +6,11 @@ call vundle#begin()
  
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-vinegar'
 Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-surround'
  
 " All of your Plugins must be added before the following line
 call vundle#end()               "required
