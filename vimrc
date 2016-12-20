@@ -19,15 +19,14 @@ set timeoutlen=1000 ttimeoutlen=0				"Stop the delay between switching modes"
 "set nowrap        						"Don't wrap lines
 "set tabstop=4     						"A tab is four spaces
                     						"Allow backspacing over everything in insert mode
-set autoindent    						"Always set autoindenting on
-set copyindent    						"Copy the previous indentation on autoindenting
-set number        						"Always show line numbers
-set shiftwidth=4  						"Number of spaces to use for autoindenting
-set shiftround    						"Use multiple of shiftwidth when indenting with '<' and '>'
+"set autoindent    						"Always set autoindenting on
+"set copyindent    						"Copy the previous indentation on autoindenting
+set shiftwidth=1  						"Number of spaces to use for autoindenting
+"set shiftround    						"Use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     						"set show matching parenthesis
 set ignorecase    						"Ignore case when searching
-set smartcase     						"Ignore case if search pattern is all lowercase, case-sensitive otherwise
-set smarttab      						"Insert tabs on the start of a line according to shiftwidth, not tabstop
+"set smartcase     						"Ignore case if search pattern is all lowercase, case-sensitive otherwise
+"set smarttab      						"Insert tabs on the start of a line according to shiftwidth, not tabstop
 set history=1000         					"Remember more commands and search history
 set undolevels=1000      					"Use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
@@ -35,11 +34,12 @@ set title                					"Change the terminal's title
 set visualbell           					"Don't beep
 set noerrorbells         					"Don't beep
 "set nobackup							"Don't create a backup file
-"set noswapfile							"Disable the swapfile
+set noswapfile							"Disable the swapfile
 
 syntax enable 
 
-
+filetype on
+filetype indent on
 filetype plugin indent on
 
 
@@ -114,12 +114,27 @@ nmap <C-n> :NERDTreeToggle<cr>
 "Toggle paste on and off
 set pastetoggle=<F2>
 
+"Toggle line numbers on and off
+set number
+nnoremap <F3> :set nonumber!<CR>
+
+
 "Use Q for formatting the current paragraph (or selection)
 vmap Q gq
 nmap Q gqap
 
 "Use w!! to sudo close a file even though you should have used sudo to open it
 cmap w!! w !sudo tee % >/dev/nul
+
+
+"----------- ctrl-p option ------------"
+" https://github.com/ctrlpvim/ctrlp.vim
+
+"Invoke 
+let g:ctrlp_map = '<c-p>'
+
+"When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable:
+let g:ctrlp_working_path_mode = 'ra'
 
 
 "-----------Editor behaviour------------"
@@ -145,6 +160,9 @@ augroup END " }
 
 
 "-----------Split Management-------------"
-set splitbelow						"New horizontal splits always go below the current window
+"set splitbelow						"New horizontal splits always go below the current window
 set splitright						"New vertical splits always go to the right
 
+"-----------Useful Commands-------------"
+" Remove all instances of Word from file
+":%s/Word//g
