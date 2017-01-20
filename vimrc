@@ -102,6 +102,7 @@ nnoremap z5 :set foldlevel=5<cr>
 "-----------Mappings-------------"
 "Make it easy to edit the Vimrc file.
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
+
 "Reload the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<cr> 
 
@@ -123,11 +124,17 @@ nnoremap <F3> :set nonumber!<CR>
 vmap Q gq
 nmap Q gqap
 
+
 "Use w!! to sudo close a file even though you should have used sudo to open it
 cmap w!! w !sudo tee % >/dev/nul
 
+"Check python syntax
+nmap <leader>k :SyntasticCheck pylint<cr>
 
-"----------- ctrl-p option ------------"
+"close syntastic and clear screen of its junk
+nmap <leader>c :SyntasticReset <cr>
+
+"----------- ctrl-p options ------------"
 " https://github.com/ctrlpvim/ctrlp.vim
 
 "Invoke 
@@ -136,6 +143,31 @@ let g:ctrlp_map = '<c-p>'
 "When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable:
 let g:ctrlp_working_path_mode = 'ra'
 
+
+"----------- Syntastic with  pylint ------------"
+" https://github.com/vim-syntastic/syntastic
+" Use :SyntasticCheck to manually check right now. Use :Errors to open the
+" location-list window, and :lclose to close it. You can clear the error
+" list with :SyntasticReset, and you can use :SyntasticToggleMode to switch
+" between active (checking on writing the buffer) and passive (manual) checking.
+  
+" You don't have to switch focus to the location-list window to jump to the
+" different errors. Vim provides several built-in commands for this, for
+" example :lnext and :lprevious. You may want to add shortcut mappings for
+" these commands, or perhaps install a plugin such as Tim Pope's unimpaired
+" (see https://github.com/tpope/vim-unimpaired) that provides such mappings.
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0 " Don't auto open/close location list
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode="passive"
+let g:syntastic_enable_signs=0
+
+"Open Syntastic and check for errors
+nnoremap <F7> :SyntasticCheck<CR> :lopen<CR> 
+"Close Syntastic and the error window
+nnoremap <F8> :lclose<CR> :SyntasticReset<CR> 
 
 "-----------Editor behaviour------------"
 "Auto close brackets and quotes
